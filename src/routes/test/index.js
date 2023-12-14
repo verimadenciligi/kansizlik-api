@@ -109,6 +109,7 @@ const addTest = async (req, res) => {
     mcv: Joi.number(), //.required(),
     mch: Joi.number(), //.required(),
     mchc: Joi.number(), //.required(),
+    name: Joi.string().required(),
   }).options({
     abortEarly: false,
   });
@@ -133,17 +134,24 @@ const addTest = async (req, res) => {
   } while (typeof node === "object");
 
   let test = await TestService.create("", req.body, node);
-  res.send(test);
+  res.json(test);
 };
 
 const getTests = async (req, res) => {
-  res.send(await TestModel.find({}));
+  res.json(await TestModel.find({}));
 };
-
+const getTest = async (req, res) => {
+  res.json(
+    await TestModel.findOne({
+      _id: req.params._id,
+    })
+  );
+};
 module.exports = {
   prefix: "/tests",
   inject(route) {
     route.get("/", getTests);
     route.post("/", addTest);
+    route.post("/:id", getTest);
   },
 };
