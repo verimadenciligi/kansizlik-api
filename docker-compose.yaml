@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  backend:
+    build:
+      context: .
+    depends_on:
+      - "mongo-server"
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
   mongo-server:
     image: mongo
     environment:
