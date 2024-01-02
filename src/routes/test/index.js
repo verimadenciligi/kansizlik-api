@@ -56,8 +56,8 @@ const tree = {
                   id: "",
                   name: "rbc",
                   condition: (val) => val <= 3.65,
-                  no: () => false,
-                  yes: () => true,
+                  no: () => true,
+                  yes: () => false,
                 };
               },
             };
@@ -71,7 +71,7 @@ const tree = {
                 return {
                   id: "",
                   name: "rbc",
-                  condition: () => val <= 4.425,
+                  condition: (val) => val <= 4.425,
                   yes: () => false,
                   no() {
                     return {

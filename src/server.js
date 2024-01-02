@@ -12,3 +12,7 @@ app.listen(3000, () => {
   connectToMongo();
   console.log("listen http://localhost:3000");
 });
+
+process.on("uncaughtException", (error) => {
+  Logger.error("ROOT LEVEL ERROR " + error + " " + JSON.stringify(error));
+});
